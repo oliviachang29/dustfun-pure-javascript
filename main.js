@@ -119,7 +119,7 @@ function mainApp(args) {
 
             let particleIndex = touchingParticles[i]
             let dp = -distancePoints[i]
-            if (!dp) dp =.5 // on the odd chance it is 14, they have the same point. Fucking ignore it.
+            if (!dp) dp =.5 // on the odd chance it is 14, they have the same point
             const multiple = .7/dp
 
 
