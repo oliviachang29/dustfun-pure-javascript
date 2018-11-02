@@ -42,7 +42,7 @@ function mainApp(args) {
 
   function onload() {
   
-      var gravity = new box2d.b2Vec2(0, 10);
+      var gravity = new box2d.b2Vec2(0, 150); // gravity amount in x, y
       world = new box2d.b2World(gravity);
       var particleSystemDef = new box2d.b2ParticleSystemDef();
       world.CreateParticleSystem(particleSystemDef);
@@ -54,20 +54,26 @@ function mainApp(args) {
       createBoxBody(5,0,10,.1) // to
       createBoxBody(10,5,.1,10) // right wall
       createBoxBody(5,10,10,.1)
-      createBoxBody(5,5,1,1)
+      // createBoxBody(1,1,1,1) // box at top
+      createBoxBody(2,2,1,1) // box at top
+      createBoxBody(3,3,1,1) // box at top
+      createBoxBody(4,4,1,1) // box at top
 
-      createBoxBody(2,7,.2,7,100)
-      createBoxBody(8,7,.2,7,-100)
-      circle = new box2d.b2CircleShape(.7)
+      createBoxBody(1,3,.2,7,100) // diagonal left
+      // createBoxBody(8,7,.2,7,-100) // diagonal right
+      circle = new box2d.b2CircleShape(4) // number of particles?
       pgd = new box2d.b2ParticleGroupDef();
-      pgd.position=new box2d.b2Vec2(5,1)
-      pgd.flags = box2d.b2ParticleFlag.b2_elasticParticle;
-      pgd.groupFlags = box2d.b2ParticleGroupFlag.b2_solidParticleGroup
+      pgd.position=new box2d.b2Vec2(0,0) // x, y position of particles
+
+      // pgd.flags = box2d.b2ParticleFlag.b2_elasticParticle; // groups them together
+      // pgd.groupFlags = box2d.b2ParticleGroupFlag.b2_solidParticleGroup
       pgd.shape = circle;
-      pgd.strength=.2
+
+      // figure out what this does
+      pgd.strength=.100
   
-      pgd.color.Set(0, 255, 0, 255)
-      world.GetParticleSystemList().SetRadius(.15)
+      pgd.color.Set(100, 100, 0, 100)
+      world.GetParticleSystemList().SetRadius(.1)
       partgroup = world.GetParticleSystemList().CreateParticleGroup(pgd);
       
       requestAnimationFrame(gameLoop);
